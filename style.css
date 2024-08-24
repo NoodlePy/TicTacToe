@@ -44,6 +44,7 @@ p {
 
 
 #a3 {
+    border-radius: 20px 0px 0px 0px;
     border-right: 4px solid #666;
     border-bottom: 4px solid #666;
 }
@@ -53,6 +54,7 @@ p {
 }
 
 #c3 {
+    border-radius: 0px 20px 0px 0px;
     border-left: 4px solid #666;
     border-bottom: 4px solid #666;
 }
@@ -63,6 +65,7 @@ p {
 }
 
 #a1 {
+    border-radius: 0px 0px 0px 20px;
     border-right: 4px solid #666;
     border-top: 4px solid #666;
 }
@@ -72,6 +75,7 @@ p {
 }
 
 #c1 {
+    border-radius: 0px 0px 20px 0px;
     border-left: 4px solid #666;
     border-top: 4px solid #666;
 }
