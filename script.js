@@ -153,37 +153,57 @@ function stopGame() {
     }
 }
 
+// Reset Game Implementation
 
+function resetGame() {
+    turn = "X";
+    playerWin = false;
+    for (var key in squares) {
+        squares[key] = "";
+    }
+    for (var i = 0; i < sqr_elements.length; i++) {
+        sqr_elements[i].querySelector(".sqr_text").textContent = "";
+        sqr_elements[i].classList.remove("win_show", "wrong_show", "tie_show", "shake");
+    }
+    // Reattach event listeners
+    attachEventListeners();
+}
 
 // Main Event Listener
 
-for (var i = 0; i < sqr_elements.length; i++) {
-    sqr_elements[i].addEventListener("click", function() {
-        const pElement = this.querySelector(".sqr_text");
-        if (pElement.textContent != "") {
-            return;
-        } else {
-            pElement.textContent = turn;
-            if (turn == "X") {
-                turn = "O";
+function attachEventListeners() {
+    for (var i = 0; i < sqr_elements.length; i++) {
+        sqr_elements[i].addEventListener("click", function() {
+            const pElement = this.querySelector(".sqr_text");
+            if (pElement.textContent != "") {
+                return;
             } else {
-                turn = "X";
+                pElement.textContent = turn;
+                if (turn == "X") {
+                    turn = "O";
+                } else {
+                    turn = "X";
+                }
             }
-        }
-
-        // Update variables with current state of the game board
-        squares.a1 = document.querySelector("#a1").textContent;
-        squares.a2 = document.querySelector("#a2").textContent;
-        squares.a3 = document.querySelector("#a3").textContent;
-        squares.b1 = document.querySelector("#b1").textContent;
-        squares.b2 = document.querySelector("#b2").textContent;
-        squares.b3 = document.querySelector("#b3").textContent;
-        squares.c1 = document.querySelector("#c1").textContent;
-        squares.c2 = document.querySelector("#c2").textContent;
-        squares.c3 = document.querySelector("#c3").textContent;
-        if (!winCheck(getWinningCombinations())){
-            wrongCheck(getWinningCombinations() , pElement.parentElement.id);
-            tieCheck();
-        };
-    });
+    
+            // Update variables with current state of the game board
+            squares.a1 = document.querySelector("#a1").textContent;
+            squares.a2 = document.querySelector("#a2").textContent;
+            squares.a3 = document.querySelector("#a3").textContent;
+            squares.b1 = document.querySelector("#b1").textContent;
+            squares.b2 = document.querySelector("#b2").textContent;
+            squares.b3 = document.querySelector("#b3").textContent;
+            squares.c1 = document.querySelector("#c1").textContent;
+            squares.c2 = document.querySelector("#c2").textContent;
+            squares.c3 = document.querySelector("#c3").textContent;
+            if (!winCheck(getWinningCombinations())){
+                wrongCheck(getWinningCombinations() , pElement.parentElement.id);
+                tieCheck();
+            };
+        });
+    }
 }
+
+attachEventListeners();
+
+document.getElementById("resetButton").addEventListener("click", resetGame);
